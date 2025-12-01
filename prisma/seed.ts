@@ -1,0 +1,23 @@
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
+
+async function main() {
+  await prisma.user.createMany({
+    data: [
+      { email: "user1@example.com", name: "User One", password: "pass1" },
+      { email: "user2@example.com", name: "User Two", password: "pass2" },
+    ],
+    skipDuplicates: true,
+  });
+
+  console.log("Seeding finished.");
+}
+
+main()
+  .catch((e) => {
+    console.error(e);
+    process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });
