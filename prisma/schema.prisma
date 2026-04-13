@@ -2,15 +2,14 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client"
-  output   = "../generated"
+  provider = "prisma-client-js"
+  //  output   = "../generated/prisma"
 }
 
 datasource db {
   provider = "mysql"
 }
 
-// Example User model - customize as needed
 model User {
   id        String   @id @default(uuid())
   email     String   @unique
@@ -19,4 +18,3 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
 }
-
